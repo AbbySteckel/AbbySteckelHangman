@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play Hangman</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>Hangman</header>
+<button id="startGame" onclick="startGame()">Start Game</button>
+<h1>Guess a letter</h1>
+<input type="text" id="guessedLet" value="" size="30">
+<button id="submitGuess" onclick="guessLetter()">check it!</button>
+<h2>Your word</h2>
+<div id="spaces"></div>
+<h3>Guessed Letters</h3>
+<div id="table"></div>
+</body>
+</html>
