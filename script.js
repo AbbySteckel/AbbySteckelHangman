@@ -1,44 +1,91 @@
-var words = ["tangerine", "dioxide", "buzz", "albatross","zeitgeist","epilogue","legitimate","frolic"];
+var animals = ["albatross", "wombat", "squirrel", "chameleon"];
+var foods = ["tangerine", "tabouleh", "popsicle", "zapote", "rambutan"];
+var plants = ["manzanita", "lichen", "redwood"];
 var guesses = 9;
 var guessedLetters = [];
 var word = "";
-
+var possibleGuesses = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t",
+    "u","v","w","x","y","z"];
 function startGame(){
+    guessedLetters=[];
+    guesses=9;
+    document.getElementById("guessedLetters").innerHTML="";
+    document.getElementById("guessesLeft").innerHTML="";
+    document.getElementById("win/lose").innerHTML = "";
+
     word = words[Math.floor(Math.random() * words.length)];
-    document.getElementById("spaces").innerHTML=printWord();
+    printWord();
 }
 
 function printWord(){
-    var spaces = " ";
-    var table="<table>";
+    var result = "";
     for(i=0; i<word.length; i++) {
-
         if(guessedLetters.indexOf(word[i])>-1){
-            spaces+=word[i];
+            result+=word[i];
         }else{
-            spaces+="_ ";
-            guessedLetters+=guessedLet;
-            table += "<tr></td>";
-            table += guessedLetters;
-            table += "</td></tr>";
+            result+="_ ";
 
         }
-
-
-        //ask whether the letter we are on is in guessedLetters or not
     }
-    table+="</table>";
-    document.getElementById("table").value = table;
-    return spaces;
+    document.getElementById("result").innerHTML=result;
+}
+
+function handleGuess(){
+    var guessedLet=document.getElementById("guessedLet").value;
+    document.getElementById("error").innerHTML="";
+    if(guessedLetters.indexOf(guessedLet)>-1){
+        document.getElementById("guessedLet").value="";
+        return document.getElementById("error").innerHTML="You already guessed that letter. Try again.";
+    }
+    if(possibleGuesses.indexOf(guessedLet)<0){
+        document.getElementById("guessedLet").value="";
+        return document.getElementById("error").innerHTML="That is not a letter. Try again";
+    }
+
+    //increment guesses only when wrong
+    guessedLetters.push(guessedLet);
+    if(word.indexOf(guessedLet) == -1) {
+        guesses--;
+    }
+
+    //format guessed letters array for display
+    var outputString = "";
+    for(var c = 0; c<guessedLetters.length; c++) {
+        outputString += guessedLetters[c];
+        if(guesses==0){
+            document.getElementById("guessedLetters").innerHTML = outputString;
+        }
+        if(guessedLetters.length > 1) {
+            outputString += ", ";
+        }
+    }
+    document.getElementById("guessedLetters").innerHTML = outputString;
+
+    document.getElementById("guessesLeft").innerHTML="You have " + guesses + " guesses remaining."
+    printWord();
+    if(guesses==0) {
+        document.getElementById("win/lose").innerHTML = "You are out of guesses! Game over.";
+    }
+    if(guesses==-1) {
+        startGame();
+    }
+    document.getElementById("guessedLet").value="";
+    document.getElementById("guessedWord").value="";
 
 }
 
-function guessLetter(){
-    var guessedLet=document.getElementById("guessedLet").value;
-    guessedLetters+=guessedLet;
-    //handle a guess, add it to guessedLetters, increment turns
-    //determine win or loss
-
-
-
+function winLose() {
+    var result = document.getElementById("result").innerHTML;
+    var guessedWord=document.getElementById("guessedWord").value;
+    if (guessedWord==word){
+        document.getElementById("result").innerHTML=guessedWord;
+        document.getElementById("guessedWord").value="";
+        return document.getElementById("win/lose").innerHTML = "You guessed it!"
+    }
+    if (result==word) {
+        document.getElementById("win/lose").innerHTML = "You guessed it!";
+    } else {
+        document.getElementById("win/lose").innerHTML = "Close, but no cigar.";
+        guesses--;
+    }
 }

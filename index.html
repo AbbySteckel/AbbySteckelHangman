@@ -7,14 +7,24 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<header>Hangman</header>
-<button id="startGame" onclick="startGame()">Start Game</button>
+<header>Play Hangman</header>
+<button id="startGame" onclick="startGame()">start game</button>
+<select id="category">
+    <option value="1">animals</option>
+    <option value="2">plants</option>
+    <option value="3">foods</option>
+</select>
 <h1>Guess a letter</h1>
 <input type="text" id="guessedLet" value="" size="30">
-<button id="submitGuess" onclick="guessLetter()">check it!</button>
+<button id="submitGuess" onclick="handleGuess()">check letter</button>
+<input type="text" id="guessedWord" value="" size="30">
+<button id="endGame" onclick="winLose()">check word</button>
+<div id="error"></div>
 <h2>Your word</h2>
-<div id="spaces"></div>
+<div id="result"></div>
 <h3>Guessed Letters</h3>
-<div id="table"></div>
+<div id="guessedLetters"></div>
+<div id="guessesLeft"></div>
+<div id="win/lose"></div>
 </body>
 </html>
