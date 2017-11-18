@@ -6,15 +6,29 @@ var guessedLetters = [];
 var word = "";
 var possibleGuesses = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t",
     "u","v","w","x","y","z"];
+
 function startGame(){
     guessedLetters=[];
     guesses=9;
     document.getElementById("guessedLetters").innerHTML="";
     document.getElementById("guessesLeft").innerHTML="";
     document.getElementById("win/lose").innerHTML = "";
-
-    word = words[Math.floor(Math.random() * words.length)];
+    getCategory();
     printWord();
+}
+
+
+function getCategory(){
+    var category = document.getElementById("category").value;
+    if(category==1){
+        word = animals[Math.floor(Math.random() * animals.length)];
+    }
+    if(category==2){
+        word = plants[Math.floor(Math.random() * plants.length)];
+    }
+    if(category==3){
+        word = foods[Math.floor(Math.random() * foods.length)];
+    }
 }
 
 function printWord(){
