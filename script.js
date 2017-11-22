@@ -10,13 +10,13 @@ var possibleGuesses = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","
 function startGame(){
     guessedLetters=[];
     guesses=9;
+    document.getElementById("error").innerHTML="";
     document.getElementById("guessedLetters").innerHTML="";
     document.getElementById("guessesLeft").innerHTML="";
     document.getElementById("win/lose").innerHTML = "";
     getCategory();
     printWord();
 }
-
 
 function getCategory(){
     var category = document.getElementById("category").value;
@@ -51,7 +51,7 @@ function handleGuess(){
         document.getElementById("guessedLet").value="";
         return document.getElementById("error").innerHTML="You already guessed that letter. Try again.";
     }
-    if(possibleGuesses.indexOf(guessedLet)<0){
+    if(possibleGuesses.indexOf(guessedLet.toLowerCase())<0){
         document.getElementById("guessedLet").value="";
         return document.getElementById("error").innerHTML="That is not a letter. Try again";
     }
@@ -66,16 +66,12 @@ function handleGuess(){
     var outputString = "";
     for(var c = 0; c<guessedLetters.length; c++) {
         outputString += guessedLetters[c];
-        if(guesses==0){
-            document.getElementById("guessedLetters").innerHTML = outputString;
-        }
-        if(guessedLetters.length > 1) {
-            outputString += ", ";
-        }
+        outputString += ", ";
     }
-    document.getElementById("guessedLetters").innerHTML = outputString;
+    console.log(outputString);
+    document.getElementById("guessedLetters").innerHTML = outputString.substring(0,outputString.length-2);
 
-    document.getElementById("guessesLeft").innerHTML="You have " + guesses + " guesses remaining."
+    document.getElementById("guessesLeft").innerHTML="You have " + guesses + " guesses remaining.";
     printWord();
     if(guesses==0) {
         document.getElementById("win/lose").innerHTML = "You are out of guesses! Game over.";
@@ -103,3 +99,4 @@ function winLose() {
         guesses--;
     }
 }
+

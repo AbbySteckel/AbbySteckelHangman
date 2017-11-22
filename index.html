@@ -8,21 +8,23 @@
 </head>
 <body>
 <header>Play Hangman</header>
-<button id="startGame" onclick="startGame()">start game</button>
+<h1>Pick a category</h1>
 <select id="category">
     <option value="1">animal</option>
     <option value="2">plant</option>
     <option value="3">food</option>
 </select>
-<h1>Guess a letter</h1>
+<br>
+<button id="startGame" onclick="startGame()">start game</button>
+<h2>Guess a letter</h2>
 <input type="text" id="guessedLet" value="" size="30">
 <button id="submitGuess" onclick="handleGuess()">check letter</button>
 <input type="text" id="guessedWord" value="" size="30">
 <button id="endGame" onclick="winLose()">check word</button>
 <div id="error"></div>
-<h2>Your word</h2>
+<h3>Your word</h3>
 <div id="result"></div>
-<h3>Guessed Letters</h3>
+<h4>Guessed Letters</h4>
 <div id="guessedLetters"></div>
 <div id="guessesLeft"></div>
 <div id="win/lose"></div>

@@ -11,7 +11,7 @@ header {
     text-align: center;
 }
 
-h1 {
+h1,h2,h3,h4 {
     font-size: 20px;
     text-align: left;
     font-weight: normal;
@@ -19,6 +19,7 @@ h1 {
 
 button {
     font-size: 20px;
+    border-radius: 2px;
 }
 
 div {
@@ -26,8 +27,12 @@ div {
     margin-bottom: 5px;
 }
 
-h2,h3 {
+select {
     font-size: 20px;
-    text-align: left;
-    font-weight: normal;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+input {
+    font-size: 20px;
 }
